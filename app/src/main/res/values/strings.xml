@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CVMovil</string>
+    <string name="login">Inicia Sesión</string>
+    <string name="ingreso">Ingrese su correo electronico y contraseña</string>
+    <string name="user">Correo Electrónico:</string>
+    <string name="correo">tucorreo@gmail.com</string>
+    <string name="pass">Contraseña:</string>
+    <string name="pass_toggle">*********</string>
+    <string name="name">Nombre Completo:</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="titulo">Titulo:</string>
+    <string name="profile">Foto de Perfil:</string>
+    <string name="volver">Volver</string>
+    <string name="registrar">Registrar</string>
+    <string name="upload">Cargar Imagen</string>
+    <string name="or">O Inicie Sesión con</string>
+    <string name="nocount">¿No posee una cuenta?</string>
+    <string name="registra"><a href="">Registrate</a></string>
+    <string name="habilidades">Habilidades:</string>
+    <string name="cono">conocimientos adquiridos</string>
+    <string name="proyect">Proyectos Finalizados:</string>
+    <string name="proyecto1img">Imagen del primer proyecto</string>
+</resources>
