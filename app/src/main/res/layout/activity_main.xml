@@ -1,531 +1,536 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/rootScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:fontFamily="@font/inter"
-    tools:context=".actividades.MainActivity">
+    android:fillViewport="true">
 
-    <FrameLayout
-        android:id="@+id/Elipse1"
-        android:layout_width="750dp"
-        android:layout_height="1220dp"
-        android:alpha="0.85"
-        android:background="@drawable/gradiante1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/Elipse2"
-        android:layout_width="750dp"
-        android:layout_height="1220dp"
-        android:background="@drawable/gradient2"
-        android:alpha="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/banner"
-        android:layout_width="345dp"
-        android:layout_height="140dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="#00FFFFFF"
-        app:strokeColor="#CC2B3B80"
-        app:strokeWidth="2dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cardHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/inter"
+        tools:context=".actividades.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Elipses"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/banner"
+            <FrameLayout
+                android:id="@+id/Elipse1"
+                android:layout_width="750dp"
+                android:layout_height="1220dp"
                 android:alpha="0.85"
-                android:scaleType="centerCrop"
+                android:background="@drawable/gradiante1"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/Elipse2"
+                android:layout_width="750dp"
+                android:layout_height="1220dp"
+                android:alpha="0.7"
+                android:background="@drawable/gradient2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="120dp"
-                app:strokeWidth="0dp"
-                android:layout_marginVertical="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:cardBackgroundColor="#00FFFFFF">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/profile_img"
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardHeader"
-        android:layout_width="345dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/abilityCard"
-        app:layout_constraintTop_toBottomOf="@id/banner"
-        app:cardCornerRadius="12dp"
-        app:strokeColor="#FFF"
-        app:strokeWidth="1.5dp"
-        app:cardBackgroundColor="#80FFFFFF">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/nombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="#092562"
-                android:textAlignment="center"
-                android:shadowColor="#80000000"
-                android:shadowDy="2.5"
-                android:shadowRadius="20.0"
-                android:paddingBottom="6dp"
-                android:paddingTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/titulo"/>
-
-            <TextView
-                android:id="@+id/titulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textColor="#D65250B5"
-                android:textAlignment="center"
-                android:shadowColor="#66000000"
-                android:shadowDy="2.5"
-                android:shadowRadius="5.0"
-                android:textStyle="bold"
-                android:paddingTop="6dp"
-                android:paddingBottom="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nombre"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/abilityCard"
-        android:layout_width="345dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/proyectosCard"
-        app:layout_constraintTop_toBottomOf="@id/cardHeader"
-        app:cardCornerRadius="12dp"
-        app:strokeColor="#FFF"
-        app:strokeWidth="1dp"
-        app:cardBackgroundColor="#80FFFFFF"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true"
-        android:padding="8dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/abilitys"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
-
-            <TextView
-                android:id="@+id/habilidades"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/habilidades"
-                android:textColor="#092562"
-                android:textSize="26sp"
-                android:textAlignment="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="6dp"
-                android:shadowColor="#80000000"
-                android:shadowDy="2.5"
-                android:shadowRadius="20.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/conocimientos"/>
-
-            <TextView
-                android:id="@+id/conocimientos"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/cono"
-                android:textSize="20sp"
-                android:textColor="#D65250B5"
-                android:textAlignment="center"
-                android:shadowColor="#A6000000"
-                android:shadowDy="2.5"
-                android:shadowRadius="5.0"
-                android:paddingBottom="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/habilidades"/>
-
-            <LinearLayout
-                android:id="@+id/filaHabilidad1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="4dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintTop_toBottomOf="@id/conocimientos"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/filaHabilidad2">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad1"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad2"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad3"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/filaHabilidad2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="4dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintTop_toBottomOf="@id/filaHabilidad1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/filaHabilidad3">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad4"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad5"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad6"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/filaHabilidad3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="4dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintTop_toBottomOf="@id/filaHabilidad2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad7"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad8"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/tarjetaHabilidad9"
-                    android:layout_width="95dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:strokeColor="#BF000000"
-                    app:strokeWidth="1dp"
-                    app:cardBackgroundColor="#6C7278"
-                    app:cardElevation="8dp">
-
-                    <TextView
-                        android:id="@+id/habilidad9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="#FFF"
-                        android:textSize="16sp"
-                        android:shadowColor="#CC000000"
-                        android:shadowDy="2.5"
-                        android:shadowRadius="5.0"/>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/proyectosCard"
-        android:layout_width="345dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/abilityCard"
-        app:cardCornerRadius="12dp"
-        app:strokeColor="#FFF"
-        app:strokeWidth="1dp"
-        app:cardBackgroundColor="#80FFFFFF">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/proyectos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
-
-            <TextView
-                android:id="@+id/finPro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/proyect"
-                android:textColor="#092562"
-                android:textSize="26sp"
-                android:textAlignment="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="6dp"
-                android:shadowColor="#80000000"
-                android:shadowDy="2.5"
-                android:shadowRadius="20.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/proyecto1"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/banner"
+            android:layout_width="345dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toTopOf="@id/cardHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#CC2B3B80"
+            app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/proyecto1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="100dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintTop_toBottomOf="@id/finPro"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:alpha="0.85"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/banner"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="10dp"
+                    app:cardBackgroundColor="#00FFFFFF"
+                    app:cardCornerRadius="120dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/profile_img"
+                            android:layout_width="200dp"
+                            android:layout_height="150dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardHeader"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toTopOf="@id/abilityCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner"
+            app:strokeColor="#FFF"
+            app:strokeWidth="1.5dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/proyecto1text"
+                    android:id="@+id/nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#D65250B5"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:shadowColor="#80000000"
+                    android:shadowDy="2.5"
+                    android:shadowRadius="20.0"
                     android:textAlignment="center"
+                    android:textColor="#092562"
+                    android:textSize="30sp"
+                    app:layout_constraintBottom_toTopOf="@id/titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="8dp"
+                    android:shadowColor="#66000000"
+                    android:shadowDy="2.5"
+                    android:shadowRadius="5.0"
+                    android:textAlignment="center"
+                    android:textColor="#D65250B5"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nombre" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/abilityCard"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:padding="8dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@id/proyectosCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardHeader"
+            app:strokeColor="#FFF"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/abilitys"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/habilidades"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:shadowColor="#80000000"
+                    android:shadowDy="2.5"
+                    android:shadowRadius="20.0"
+                    android:text="@string/habilidades"
+                    android:textAlignment="center"
+                    android:textColor="#092562"
+                    android:textSize="26sp"
+                    app:layout_constraintBottom_toTopOf="@id/conocimientos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/conocimientos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="8dp"
                     android:shadowColor="#A6000000"
                     android:shadowDy="2.5"
                     android:shadowRadius="5.0"
-                    android:paddingBottom="8dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/proyecto1text"/>
-
-                <ImageView
-                    android:id="@+id/imgProyecto1"
-                    android:layout_width="245dp"
-                    android:layout_height="85dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/proyecto1img"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/cono"
+                    android:textAlignment="center"
+                    android:textColor="#D65250B5"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/proyecto1text"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/habilidades" />
 
+                <LinearLayout
+                    android:id="@+id/filaHabilidad1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@android:color/transparent"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/filaHabilidad2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conocimientos">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad1"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad2"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad3"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filaHabilidad2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@android:color/transparent"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/filaHabilidad3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/filaHabilidad1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad4"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad5"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad6"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filaHabilidad3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@android:color/transparent"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/filaHabilidad2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad7"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad8"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tarjetaHabilidad9"
+                        android:layout_width="95dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="5dp"
+                        app:cardBackgroundColor="#6C7278"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="#BF000000"
+                        app:strokeWidth="1dp">
+
+                        <TextView
+                            android:id="@+id/habilidad9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:shadowColor="#CC000000"
+                            android:shadowDy="2.5"
+                            android:shadowRadius="5.0"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/proyectosCard"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toTopOf="@id/editbtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/abilityCard"
+            app:strokeColor="#FFF"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/proyectos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
+
+                <TextView
+                    android:id="@+id/finPro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:shadowColor="#80000000"
+                    android:shadowDy="2.5"
+                    android:shadowRadius="20.0"
+                    android:text="@string/proyect"
+                    android:textAlignment="center"
+                    android:textColor="#092562"
+                    android:textSize="26sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Aqui se incertan los proyectos del usuario logeado
+                     utilizando codigo en JAVA desde el MainActivity    -->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/editbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:textSize="16sp"
+            android:text="@string/edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/proyectosCard"
+            android:background="@drawable/button_selector"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
