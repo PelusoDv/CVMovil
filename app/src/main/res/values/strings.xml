@@ -20,4 +20,6 @@
     <string name="cono">conocimientos adquiridos</string>
     <string name="proyect">Proyectos Finalizados:</string>
     <string name="edit">Editar</string>
+    <string name="add">Agregar</string>
+    <string name="save">Guardar y Salir</string>
 </resources>

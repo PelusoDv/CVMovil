@@ -1,11 +1,13 @@
 package com.Incade.cvprogweb.actividades;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -189,5 +191,16 @@ public class MainActivity extends AppCompatActivity {
             nuevoProyecto.addView(textoProyecto);
             nuevoProyecto.addView(imagenProyecto);
         }
+
+        // Boton para la nueva pantalal de edicion
+        Button editBtn = findViewById(R.id.editbtn);
+
+        editBtn.setOnClickListener( v -> {
+            Intent intent = new Intent(MainActivity.this, EditActivity.class);
+
+            intent.putExtra("idUsuario", usuario.getId());
+
+            startActivity(intent);
+        });
     }
 }

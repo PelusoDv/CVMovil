@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".actividades.EditActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Elipses"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/Elipse1"
+                android:layout_width="750dp"
+                android:layout_height="1220dp"
+                android:alpha="0.85"
+                android:background="@drawable/gradiante1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/Elipse2"
+                android:layout_width="750dp"
+                android:layout_height="1220dp"
+                android:alpha="0.7"
+                android:background="@drawable/gradient2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardContenedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="34dp"
+            android:layout_marginVertical="24dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#FFF"
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contenedor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/Elipses2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:id="@+id/Elipse3"
+                        android:layout_width="640dp"
+                        android:layout_height="1220dp"
+                        android:background="@drawable/gradiante3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <FrameLayout
+                        android:id="@+id/Elipse4"
+                        android:layout_width="640dp"
+                        android:layout_height="1220dp"
+                        android:background="@drawable/gradiante3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/inputs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:id="@+id/nameText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name"
+                        android:textColor="#5C5C5C"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@drawable/input"
+                        android:inputType="text"
+                        android:paddingHorizontal="8sp"
+                        android:paddingVertical="2sp"
+                        app:layout_constraintBottom_toTopOf="@id/titleText"
+                        app:layout_constraintTop_toBottomOf="@id/nameText" />
+
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/titulo"
+                        android:textColor="#5C5C5C"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/name" />
+
+                    <EditText
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@drawable/input"
+                        android:inputType="text"
+                        android:paddingHorizontal="8sp"
+                        android:paddingVertical="2sp"
+                        app:layout_constraintBottom_toTopOf="@id/profile"
+                        app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+                    <LinearLayout
+                        android:id="@+id/profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/abilitiesText"
+                        app:layout_constraintTop_toBottomOf="@id/title">
+
+                        <TextView
+                            android:id="@+id/profileText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile"
+                            android:textColor="#5C5C5C"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/editProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:background="@drawable/button_selector"
+                            android:backgroundTint="@null"
+                            android:text="@string/upload"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/abilitiesText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/habilidades"
+                        android:textColor="#5C5C5C"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/filaHabilidad1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/profile" />
+
+
+                    <LinearLayout
+                        android:id="@+id/filaHabilidad1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/filaHabilidad2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/abilitiesText">
+
+                        <EditText
+                            android:id="@+id/habilidad1"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad2"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad3"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/filaHabilidad2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/filaHabilidad3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/filaHabilidad1">
+
+                        <EditText
+                            android:id="@+id/habilidad4"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad5"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad6"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/filaHabilidad3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/proyectosHead"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/filaHabilidad2">
+
+                        <EditText
+                            android:id="@+id/habilidad7"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad8"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/habilidad9"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/input"
+                            android:inputType="text"
+                            android:paddingHorizontal="8sp"
+                            android:paddingVertical="2sp"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/proyectosHead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/proyectos"
+                        app:layout_constraintTop_toBottomOf="@id/filaHabilidad3">
+
+                        <TextView
+                            android:id="@+id/proyectsText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/proyect"
+                            android:textColor="#5C5C5C"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/addProyects"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:background="@drawable/button_selector"
+                            android:backgroundTint="@null"
+                            android:text="@string/add"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/proyectos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintBottom_toTopOf="@id/save"
+                        app:layout_constraintTop_toBottomOf="@id/proyectosHead">
+
+                        <!-- AQUI SE GENERARAN LOS PROYECTOS DINAMICAMENTE -->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Button
+                        android:id="@+id/save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:background="@drawable/button_selector"
+                        android:backgroundTint="@null"
+                        android:text="@string/save"
+                        app:backgroundTint="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/proyectos" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
