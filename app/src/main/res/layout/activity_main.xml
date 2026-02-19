@@ -251,7 +251,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -276,7 +276,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -301,7 +301,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
@@ -340,7 +340,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -365,7 +365,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -390,7 +390,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
@@ -429,7 +429,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -454,7 +454,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -479,7 +479,7 @@
                             android:shadowRadius="5.0"
                             android:textAlignment="center"
                             android:textColor="#FFF"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -501,7 +501,7 @@
             app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/proyectos"
+                android:id="@+id/pp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent">
@@ -521,10 +521,24 @@
                     android:textSize="26sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/proyectos"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/proyectos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/finPro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingBottom="8dp">
 
                 <!-- Aqui se incertan los proyectos del usuario logeado
                      utilizando codigo en JAVA desde el MainActivity    -->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -536,6 +550,7 @@
             android:layout_marginBottom="24dp"
             android:textSize="16sp"
             android:text="@string/edit"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -6,9 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -23,6 +25,7 @@ import com.Incade.cvprogweb.database.DBCV;
 import com.Incade.cvprogweb.modelos.Habilidad;
 import com.Incade.cvprogweb.modelos.Proyecto;
 import com.Incade.cvprogweb.modelos.Usuario;
+import com.Incade.cvprogweb.recursos.CusToast;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        CusToast msgBox = new CusToast();
         dbHelper = new DBCV(MainActivity.this);
 
         long idUsuario = getIntent().getLongExtra("idUsuario", -1);
@@ -86,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         List<Proyecto> proyectos = dbHelper.proyectos(usuario.getId());
 
         // Recorremos cada proyecto en la lista con un for
-        int idAnterior = R.id.finPro; // variable auxiliar con el id del texto dentro del contenedor de proyectos
         for (int i=0; i<proyectos.size(); i++) {
             //  Variable para convertir dp a px
             float density = getResources().getDisplayMetrics().density;
@@ -100,31 +103,16 @@ public class MainActivity extends AppCompatActivity {
             ConstraintLayout contenedor = findViewById(R.id.proyectos);
 
             //  Creamos un nuevo contenedor para los datos del proyecto a mostrar
-            ConstraintLayout nuevoProyecto = new ConstraintLayout(this);
-            nuevoProyecto.setId(View.generateViewId());
+            LinearLayout nuevoProyecto = new LinearLayout(this);
+            nuevoProyecto.setOrientation(LinearLayout.VERTICAL);
 
-            //  1 Convertimos dp a píxeles
-            int marginBottomPx = (int) (16 * density);
-            int minHeightPx = (int) (100 * density);
             //  2 Creamos los parametros para establecer al contenedor
-            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                            ConstraintLayout.LayoutParams.MATCH_PARENT,
-                            ConstraintLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
             //  3 Establecemos los dp previamente convertidos
-            params.bottomMargin = marginBottomPx;
-            nuevoProyecto.setMinHeight(minHeightPx);
-            //  4 Ahora los constraints
-            params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-            if (i==proyectos.size()-1){ // si es la ultima iteracion
-                params.topToBottom = idAnterior; // top pegado al proyecto anterior
-                params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID; // bottom al contenedor
-            } else {
-                params.bottomToTop = nuevoProyecto.getId(); // hacemos que el bottom se pege al top del nuevo proyecto
-                findViewById(idAnterior).setLayoutParams(params); // establecemos estos parametros para el objeto anterior
-                params.topToBottom = idAnterior; // pegamos el top al objeto anterior
-            }
-            idAnterior = nuevoProyecto.getId(); // guardamos el id para la proxima iteracion
+            params.bottomMargin = (int) (16 * density);
+
             //  5 Seteamos los atributos del contenedor
             nuevoProyecto.setLayoutParams(params);
 
@@ -133,14 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
             //  Ahora creamos el TextView para mostrar
             TextView textoProyecto = new TextView(this);
-            textoProyecto.setId(View.generateViewId());
-            //  Y establecemos su contenido
             textoProyecto.setText(pro);
 
             //  Y tambien el ImageView
             ImageView imagenProyecto = new ImageView(this);
-            imagenProyecto.setId(View.generateViewId());
-            //  Y tambien su contenido con GLIDE
+            //  Y su contenido con GLIDE
             Glide.with(this)
                     .load(img)
                     .placeholder(R.drawable.ic_launcher_background) // opcional: mientras carga
@@ -149,9 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
             //  Ahora seteamos los parametros de diseño del TextView
             //  1 Convertimos dp a píxeles
-            int paddingBottomPx = (int) (8 * density);
+            int marginBottom = (int) (8 * density);
             //  2 Seteamos atributos para el TextView
-            textoProyecto.setPadding(0,0,0,paddingBottomPx); // Padding
             textoProyecto.setTextColor(Color.parseColor("#D65250B5")); // Color del texto
             textoProyecto.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20); // Tamaño del texto
             textoProyecto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER); // Alinecion del texto
@@ -162,11 +146,10 @@ public class MainActivity extends AppCompatActivity {
                     Color.parseColor("#A6000000") // color
             );
             //  3 Los constrains del texto
-            ConstraintLayout.LayoutParams textParams = new ConstraintLayout.LayoutParams(
-                            ConstraintLayout.LayoutParams.MATCH_PARENT,
-                            ConstraintLayout.LayoutParams.WRAP_CONTENT);
-            textParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-            textParams.bottomToTop = imagenProyecto.getId();
+            LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            textParams.bottomMargin = marginBottom;
             //  4 Seteamos los constrains
             textoProyecto.setLayoutParams(textParams);
 
@@ -175,12 +158,8 @@ public class MainActivity extends AppCompatActivity {
             int widthpx = (int) (250 * density);
             int heightpx = (int) (85 * density);
             //  2 Establecemos el alto y ancho
-            ConstraintLayout.LayoutParams imgParams = new ConstraintLayout.LayoutParams(widthpx, heightpx);
-            //  3 Establecemos los constraints
-            imgParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
-            imgParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-            imgParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-            imgParams.topToBottom = textoProyecto.getId();
+            LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(widthpx, heightpx);
+            imgParams.gravity = Gravity.CENTER_HORIZONTAL;
             //  4 Seteamos los constrains
             imagenProyecto.setLayoutParams(imgParams);
             // 5 atributos adicionales
@@ -202,5 +181,9 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
         });
+
+        if (getIntent().getStringExtra("mensaje") != null){
+            msgBox.showCustomToast(this,getIntent().getStringExtra("mensaje"), 1500);
+        }
     }
 }

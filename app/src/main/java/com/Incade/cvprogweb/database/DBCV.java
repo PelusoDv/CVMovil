@@ -168,6 +168,33 @@ public class DBCV extends SQLiteAssetHelper {
         return rowsDeleted;
     }
 
+    /**
+     * updateUserData:
+     * - Actualiza los datos del usuario excepto id, email y password.
+     * - Devuelve true si se actualizó al menos una fila.
+     */
+    public boolean updateUserData(long userId, Usuario user) {
+        if (user == null) return false;
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // Solo los campos editables
+        values.put(COL_NOMBRE, user.getNombre());
+        values.put(COL_TITULO, user.getTitulo());
+        values.put(COL_IMG_PERF, user.getProfile_img());
+
+        int rowsUpdated = db.update(
+                TABLE_USUARIO,
+                values,
+                COL_ID + " = ?",
+                new String[]{String.valueOf(userId)}
+        );
+
+        db.close();
+        return rowsUpdated > 0;
+    }
+
     public List<String> habilidades(long usuarioID) {
         List<String> lista = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -185,6 +212,32 @@ public class DBCV extends SQLiteAssetHelper {
         return lista;
     }
 
+    public boolean replaceHabilidades(long usuarioId, List<String> nuevasHabilidades) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+
+        try {
+            // 1 Eliminar habilidades actuales
+            db.delete(TABLE_HABILIDAD, FK_ID + " = ?",
+                    new String[]{String.valueOf(usuarioId)});
+
+            // 2 Insertar nuevas habilidades
+            for (String habilidad : nuevasHabilidades) {
+                ContentValues values = new ContentValues();
+                values.put(FK_ID, usuarioId);
+                values.put("habilidad", habilidad);
+                db.insert(TABLE_HABILIDAD, null, values);
+            }
+
+            db.setTransactionSuccessful();
+            return true;
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
     public List<Proyecto> proyectos(long usuarioID) {
         List<Proyecto> lista = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -194,6 +247,7 @@ public class DBCV extends SQLiteAssetHelper {
         if (cursor.moveToFirst()) {
             do {
                 Proyecto proyecto = new Proyecto();
+                proyecto.setId(cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID)));
                 proyecto.setProyecto(cursor.getString(cursor.getColumnIndexOrThrow("proyecto")));
                 proyecto.setImagen(cursor.getString(cursor.getColumnIndexOrThrow("imagen")));
                 lista.add(proyecto);
@@ -202,5 +256,54 @@ public class DBCV extends SQLiteAssetHelper {
         cursor.close();
         db.close();
         return lista;
+    }
+
+    public boolean deleteProyecto(long proyectoId) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        int rowsDeleted = db.delete(
+                TABLE_PROYECTO,
+                COL_ID + " = ?",
+                new String[]{String.valueOf(proyectoId)}
+        );
+
+        db.close();
+        return rowsDeleted > 0;
+    }
+
+    public long addProyecto(long usuarioId, Proyecto proyecto) {
+        if (proyecto == null) return -1;
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(FK_ID, usuarioId);
+        values.put("proyecto", proyecto.getProyecto());
+        values.put("imagen", proyecto.getImagen());
+
+        long id = db.insert(TABLE_PROYECTO, null, values);
+
+        db.close();
+        return id; // devuelve el id generado o -1 si falló
+    }
+
+    public boolean updateProyecto(long proyectoId, Proyecto proyecto) {
+        if (proyecto == null) return false;
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("proyecto", proyecto.getProyecto());
+        values.put("imagen", proyecto.getImagen());
+
+        int rowsUpdated = db.update(
+                TABLE_PROYECTO,
+                values,
+                COL_ID + " = ?",
+                new String[]{String.valueOf(proyectoId)}
+        );
+
+        db.close();
+        return rowsUpdated > 0;
     }
 }

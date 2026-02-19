@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextLink">
+        <item name="android:textColor">#551A8B</item>
+    </style>
+</resources>
