@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Buscamos las habilidades del usuario segun id
-        List<String> habilidades = dbHelper.habilidades(usuario.getId());
+        List<Habilidad> habilidades = dbHelper.habilidades(usuario.getId());
         // Recorremos cada habilidad en la lista con un for
         for (int i=0; i<habilidades.size(); i++) {
             //  Extraemos cada habilidad de la lista
-            String habilidad = habilidades.get(i);
+            String habilidad = habilidades.get(i).getHabilidad();
             // Determinamos el nombre del ID de cada TextView en el layout
             String textViewName = "habilidad" + (i+1);
             // Obtenemos el ID real del recurso
@@ -100,11 +100,12 @@ public class MainActivity extends AppCompatActivity {
             String img = proyecto.getImagen();
 
             //  Buscamos el contenedor de los proyectos
-            ConstraintLayout contenedor = findViewById(R.id.proyectos);
+            LinearLayout contenedor = findViewById(R.id.proyectos);
 
             //  Creamos un nuevo contenedor para los datos del proyecto a mostrar
             LinearLayout nuevoProyecto = new LinearLayout(this);
             nuevoProyecto.setOrientation(LinearLayout.VERTICAL);
+            nuevoProyecto.setWeightSum(1);
 
             //  2 Creamos los parametros para establecer al contenedor
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

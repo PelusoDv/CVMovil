@@ -10,7 +10,6 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,9 +24,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.Incade.cvprogweb.R;
 import com.Incade.cvprogweb.database.DBCV;
+import com.Incade.cvprogweb.modelos.Habilidad;
 import com.Incade.cvprogweb.modelos.Proyecto;
 import com.Incade.cvprogweb.modelos.Usuario;
-import com.Incade.cvprogweb.recursos.Auxiliar;
 import com.Incade.cvprogweb.recursos.CusToast;
 
 import java.io.ByteArrayOutputStream;
@@ -41,9 +39,8 @@ public class EditActivity extends AppCompatActivity {
     DBCV dbHelper;
 
     byte[] imgPerfil;
-    private List<Auxiliar> listaProyectosUI = new ArrayList<>();
+    private List<Proyecto> listaProyectos = new ArrayList<>();
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +57,10 @@ public class EditActivity extends AppCompatActivity {
         long idUsuario = getIntent().getLongExtra("idUsuario", -1);
 
         Usuario usuario = dbHelper.getUsuario(idUsuario);
-        List<String> habilidades = dbHelper.habilidades(usuario.getId());
+        List<Habilidad> habilidades = dbHelper.habilidades(usuario.getId());
+        if (habilidades == null) {
+            habilidades = new ArrayList<>();
+        }
         List<Proyecto> proyectos = dbHelper.proyectos(usuario.getId());
 
         // Mostramos los datos originales en los textbox
@@ -72,17 +72,15 @@ public class EditActivity extends AppCompatActivity {
         // Recorremos cada habilidad en la lista con un for
         for (int i = 0; i < habilidades.size(); i++) {
             //  Extraemos cada habilidad de la lista
-            String habilidad = habilidades.get(i);
+            String habilidad = habilidades.get(i).getHabilidad();
             // Determinamos el nombre del ID de cada TextView en el layout
             String textViewName = "habilidad" + (i + 1);
             // Obtenemos el ID real del recurso
             int resId = getResources().getIdentifier(textViewName, "id", getPackageName());
-            // Buscamos el TextView correspondiente
-            EditText editText = findViewById(resId);
-            // Si el TextView existe, establecemos el texto
-            if (editText != null) {
-                editText.setText(habilidad);
-            }
+            // Buscamos el EditText correspondiente
+            TextView textView = findViewById(resId);
+            // Establecemos el texto
+            textView.setText(habilidad);
         }
 
         //  Variable para convertir dp a px
@@ -129,12 +127,12 @@ public class EditActivity extends AppCompatActivity {
             //  5 Y creamos un boton para borrar proyectos
             Button deleteBtn = new Button(this);
             //  6 Almacenamos datos de los campos para mas adelante
-            Auxiliar item = new Auxiliar();
-            item.id = proyecto.getId(); // importante
-            item.titulo = textoProyecto;
-            item.imagen = imagenProyecto;
+            Proyecto nuevo = new Proyecto();
+            nuevo.setId(proyecto.getId()); // importante
+            nuevo.setProyecto(textoProyecto.getText().toString().trim());
+            nuevo.setImagen(imagenProyecto.getText().toString().trim());
 
-            listaProyectosUI.add(item);
+            listaProyectos.add(nuevo);
 
             //  Ahora seteamos los parametros de los EditText
             //  1 Convertimos dp a píxeles
@@ -200,7 +198,7 @@ public class EditActivity extends AppCompatActivity {
                 //ConstraintLayout proyect = (ConstraintLayout) v.getParent();
                 dbHelper.deleteProyecto(proyecto.getId());
                 proyectos.remove(proyecto);
-                listaProyectosUI.remove(item);
+                listaProyectos.remove(nuevo);
                 contenedor.removeView(nuevoProyecto);
             });
 
@@ -258,12 +256,12 @@ public class EditActivity extends AppCompatActivity {
             //  4 Y creamos un boton para borrar proyectos
             Button deleteBtn = new Button(this);
             //  5 Almacenamos datos de los campos para mas adelante
-            Auxiliar item = new Auxiliar();
-            item.id = -1; // nuevo proyecto
-            item.titulo = textoProyecto;
-            item.imagen = imagenProyecto;
+            Proyecto nuevo = new Proyecto();
+            nuevo.setId(-1); // nuevo proyecto
+            nuevo.setProyecto(textoProyecto.getText().toString().trim());
+            nuevo.setImagen(imagenProyecto.getText().toString().trim());
 
-            listaProyectosUI.add(item);
+            listaProyectos.add(nuevo);
 
             //  Ahora seteamos los parametros de los EditText
             //  1 Convertimos dp a píxeles
@@ -326,7 +324,7 @@ public class EditActivity extends AppCompatActivity {
             deleteBtn.setAllCaps(false);
             deleteBtn.setPadding(paddingHoriz, paddingVertical, paddingHoriz, paddingVertical);
             deleteBtn.setOnClickListener(e -> {
-                listaProyectosUI.remove(item);
+                listaProyectos.remove(nuevo);
                 contenedor.removeView(nuevoProyecto);
             });
 
@@ -356,33 +354,32 @@ public class EditActivity extends AppCompatActivity {
             }
 
             List<String> nuevasHabilidades = new ArrayList<>();
-            for (int i = 0; i < habilidades.size(); i++) {
-                // Buscamos el nombre del ID de cada EditText de habilidades
+            for (int i = 0; i < 9; i++) {
+                // Determinamos el nombre del ID de cada TextView en el layout
                 String textViewName = "habilidad" + (i + 1);
                 // Obtenemos el ID real del recurso
                 int resId = getResources().getIdentifier(textViewName, "id", getPackageName());
-                // Buscamos el EditText correspondiente
-                EditText habilidad = findViewById(resId);
-                // Si el TextView existe, establecemos el texto
-                if (habilidad != null) {
+                // Buscamos el TextView correspondiente
+                TextView habilidad = findViewById(resId);
+                if (!habilidad.getText().toString().isBlank()) {
                     nuevasHabilidades.add(habilidad.getText().toString().trim());
                 }
             }
 
             boolean proyectosOK = true;
-            for (Auxiliar item : listaProyectosUI) {
+            for (Proyecto proyecto : listaProyectos) {
 
-                Proyecto proyecto = new Proyecto();
-                proyecto.setProyecto(item.titulo.getText().toString());
-                proyecto.setImagen(item.imagen.getText().toString());
+                if (proyecto.getProyecto().isBlank()) {
+                    continue; // no guardamos proyectos vacíos
+                }
 
-                if (item.id == -1) {
+                if (proyecto.getId() == -1) {
                     long generado = dbHelper.addProyecto(idUsuario, proyecto);
                     Log.d("SAVE", "Insert resultado: " + generado);
                     if (generado == -1) proyectosOK = false;
                 } else {
-                    boolean actualizado = dbHelper.updateProyecto(item.id, proyecto);
-                    Log.d("SAVE", "Update id " + item.id + ": " + actualizado);
+                    boolean actualizado = dbHelper.updateProyecto(proyecto.getId(), proyecto);
+                    Log.d("SAVE", "Update id " + proyecto.getId() + ": " + actualizado);
                     if (!actualizado) proyectosOK = false;
                 }
             }

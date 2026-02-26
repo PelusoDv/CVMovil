@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 
+import com.Incade.cvprogweb.modelos.Habilidad;
 import com.Incade.cvprogweb.modelos.Proyecto;
 import com.Incade.cvprogweb.modelos.Usuario;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -195,15 +196,17 @@ public class DBCV extends SQLiteAssetHelper {
         return rowsUpdated > 0;
     }
 
-    public List<String> habilidades(long usuarioID) {
-        List<String> lista = new ArrayList<>();
+    public List<Habilidad> habilidades(long usuarioID) {
+        List<Habilidad> lista = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_HABILIDAD + " WHERE " + FK_ID + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(usuarioID)});
 
         if (cursor.moveToFirst()) {
             do {
-                String habilidad = cursor.getString(cursor.getColumnIndexOrThrow("habilidad"));
+                Habilidad habilidad = new Habilidad();
+                habilidad.setId(cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID)));
+                habilidad.setHabilidad(cursor.getString(cursor.getColumnIndexOrThrow("habilidad")));
                 lista.add(habilidad);
             } while (cursor.moveToNext());
         }

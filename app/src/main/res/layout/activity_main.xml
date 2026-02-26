@@ -500,11 +500,12 @@
             app:strokeColor="#FFF"
             app:strokeWidth="1dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pp"
+            <LinearLayout
+                android:id="@+id/proyectos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent">
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/finPro"
@@ -521,25 +522,11 @@
                     android:textSize="26sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/proyectos"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/proyectos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/finPro"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingBottom="8dp">
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- Aqui se incertan los proyectos del usuario logeado
                      utilizando codigo en JAVA desde el MainActivity    -->
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <Button
