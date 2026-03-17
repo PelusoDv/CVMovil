@@ -390,6 +390,7 @@ public class EditActivity extends AppCompatActivity {
             if (datosActualizados && habilidadesActualizadas && proyectosOK) {
                 Intent intent = new Intent(EditActivity.this, MainActivity.class);
                 intent.putExtra("mensaje", "Datos actualizados!");
+                intent.putExtra("idUsuario", usuario.getId());
                 startActivity(intent);
                 finish();
             } else {

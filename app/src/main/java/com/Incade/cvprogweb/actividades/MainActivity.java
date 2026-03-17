@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -60,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
         titulo.setText(usuario.getTitulo());
 
         // Establecemos tambien la foto de perfil
-        Bitmap profile_img = BitmapFactory.decodeByteArray(usuario.getProfile_img(), 0, usuario.getProfile_img().length);
+        byte[] db_img = usuario.getProfile_img();
+
         ImageView fotoPerfil = findViewById(R.id.profile_img);
-        if (profile_img != null) {
+        if (db_img != null && db_img.length  > 0) {
+            Bitmap profile_img = BitmapFactory.decodeByteArray(db_img, 0, db_img.length);
             fotoPerfil.setImageBitmap(profile_img);
         } else {
             fotoPerfil.setImageResource(R.drawable.ic_launcher_foreground); // una imagen por defecto
@@ -181,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("idUsuario", usuario.getId());
 
             startActivity(intent);
+
+            finish();
         });
 
         if (getIntent().getStringExtra("mensaje") != null){
