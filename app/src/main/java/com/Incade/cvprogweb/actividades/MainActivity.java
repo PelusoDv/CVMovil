@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Establecemos tambien la foto de perfil
         byte[] db_img = usuario.getProfile_img();
-
         ImageView fotoPerfil = findViewById(R.id.profile_img);
+
         if (db_img != null && db_img.length  > 0) {
             Bitmap profile_img = BitmapFactory.decodeByteArray(db_img, 0, db_img.length);
             fotoPerfil.setImageBitmap(profile_img);
@@ -178,11 +178,8 @@ public class MainActivity extends AppCompatActivity {
 
         editBtn.setOnClickListener( v -> {
             Intent intent = new Intent(MainActivity.this, EditActivity.class);
-
             intent.putExtra("idUsuario", usuario.getId());
-
             startActivity(intent);
-
             finish();
         });
 

@@ -40,6 +40,8 @@ public class EditActivity extends AppCompatActivity {
 
     byte[] imgPerfil;
     private List<Proyecto> listaProyectos = new ArrayList<>();
+    private List<EditText> listaTitulos = new ArrayList<>();
+    private List<EditText> listaImagen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +88,8 @@ public class EditActivity extends AppCompatActivity {
         //  Variable para convertir dp a px
         float density = getResources().getDisplayMetrics().density;
         // Recorremos cada proyecto en la lista con un for
-        for (int i = 0; i < proyectos.size(); i++) {
+        for (Proyecto proyecto : proyectos) {
             //  Extraemos los datos de cada proyecto de la lista
-            Proyecto proyecto = proyectos.get(i);
             String pro = proyecto.getProyecto();
             String img = proyecto.getImagen();
 
@@ -116,8 +117,10 @@ public class EditActivity extends AppCompatActivity {
 
              //  1 Ahora creamos el EditText donde se muestra el titulo del proyecto
             EditText textoProyecto = new EditText(this);
+            listaTitulos.add(textoProyecto);
             //  2 Tambien el EditText donde se muestra la URL de la imagen
             EditText imagenProyecto = new EditText(this);
+            listaImagen.add(imagenProyecto);
             //  3 Y establecemos su contenido
             imagenProyecto.setText(img);
             textoProyecto.setText(pro);
@@ -248,8 +251,10 @@ public class EditActivity extends AppCompatActivity {
 
             //  1 Ahora creamos el EditText donde se muestra el titulo del proyecto
             EditText textoProyecto = new EditText(this);
+            listaTitulos.add(textoProyecto);
             //  2 Tambien el EditText donde se muestra la URL de la imagen
             EditText imagenProyecto = new EditText(this);
+            listaImagen.add(imagenProyecto);
             //  3 Tambien creamos un par de TextView para indicar a cada uno
             TextView tituloProyecto = new TextView(this);
             TextView urlProyecto = new TextView(this);
@@ -367,11 +372,20 @@ public class EditActivity extends AppCompatActivity {
             }
 
             boolean proyectosOK = true;
+            int index = 0;
             for (Proyecto proyecto : listaProyectos) {
 
-                if (proyecto.getProyecto().isBlank()) {
-                    continue; // no guardamos proyectos vacíos
+                String titulo = listaTitulos.get(index).getText().toString().trim();
+                String imagen = listaImagen.get(index).getText().toString().trim();
+
+                if (titulo.isBlank() || imagen.isBlank()) {
+                    index++;
+                    continue;
                 }
+
+                proyecto.setProyecto(titulo);
+                proyecto.setImagen(imagen);
+                index++;
 
                 if (proyecto.getId() == -1) {
                     long generado = dbHelper.addProyecto(idUsuario, proyecto);
